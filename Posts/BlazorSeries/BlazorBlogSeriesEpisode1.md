@@ -1,15 +1,12 @@
 ---
 title: "Blazor Series Episode 1"
+description: "Intro to WebAssembly, SignalR, Rendering, Hosting models and different types of Blazor project types in .NET 8"
 author: "Ondrej Sevcak"
 date: "2024-12-30"
 category: "Blazor"
 hashtags: "CSharp | DotNet | Blazor"
 ---
 
-
-# Blazor Series Episode 1
-
-Intro to WebAssembly, SignalR, Rendering, Hosting models and different types of Blazor project types in .NET 8
 
 ## What is Blazor
 
