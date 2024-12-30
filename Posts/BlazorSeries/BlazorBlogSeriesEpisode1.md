@@ -9,7 +9,7 @@ hashtags: "CSharp | DotNet | Blazor"
 
 # Blazor Series Episode 1
 
-### Intro to WebAssembly, SignalR, Rendering, Hosting models and different types of Blazor project types in .NET 8
+Intro to WebAssembly, SignalR, Rendering, Hosting models and different types of Blazor project types in .NET 8
 
 ## What is Blazor
 
