@@ -115,24 +115,28 @@ Now we can set a rendermode to one of the following options:
 In .NET 8, we can create only two Blazor project types with following render modes options:
 
 <table>
-    <tr>
-        <td>Template Name</td>
-        <td>Interactivity</td>
-    </tr>
-    <tr>
-        <td>Blazor Web App</td>
-        <td>Server</td>
-    </tr>
-    <tr>
-        <td>Blazor Web App</td>
-        <td>WebAssembly</td>
-    </tr>
-    <tr>
-        <td>Blazor Web App</td>
-        <td>Auto</td>
-    </tr>
-    <tr>
-        <td>Blazor WebAssembly Standalone App</td>
-        <td>WebAssembly by default (no render mode)</td>
-    </tr>
+    <thead>
+        <tr>
+            <th>Template Name</th>
+            <th>Interactivity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Blazor Web App</td>
+            <td>Server</td>
+        </tr>
+        <tr>
+            <td>Blazor Web App</td>
+            <td>WebAssembly</td>
+        </tr>
+        <tr>
+            <td>Blazor Web App</td>
+            <td>Auto</td>
+        </tr>
+        <tr>
+            <td>Blazor WebAssembly Standalone App</td>
+            <td>WebAssembly by default (no render mode)</td>
+        </tr>
+    </tbody>    
 </table>
