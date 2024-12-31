@@ -4,7 +4,7 @@ description: "Intro to WebAssembly, SignalR, Rendering, Hosting models and diffe
 author: "Ondrej Sevcak"
 date: "2024-12-30"
 category: "Blazor"
-hashtags: "CSharp | DotNet | Blazor"
+hashtags: "#CSharp #DotNet #Blazor"
 ---
 
 
