@@ -120,7 +120,7 @@ Now we can set a rendermode to one of the following options:
 
 In .NET 8, we can create only two Blazor project types with following render modes options:
 
-<table>
+<table style="border: 1px solid black;">
     <thead>
         <tr>
             <th>Template Name</th>
