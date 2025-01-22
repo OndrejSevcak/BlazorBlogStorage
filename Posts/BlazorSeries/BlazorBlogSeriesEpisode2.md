@@ -36,7 +36,6 @@ Blazor components are the building blocks of Blazor applications. They are reusa
 - **Encapsulation:** Keep the UI logic and styles self-contained.
 - **Interactivity:** Bind data and handle events seamlessly.
 
----
 
 ## Understanding the Component Lifecycle
 
@@ -116,7 +115,6 @@ The component lifecycle in Blazor is a sequence of methods and events that Blazo
    }
    ```
 
----
 
 ## Practical Example: Lifecycle in Action
 
@@ -178,7 +176,6 @@ Let’s build a simple Blazor component to demonstrate these lifecycle methods. 
 - Observe the console logs for lifecycle method execution.
 - Note how rendering is controlled using `ShouldRender`.
 
----
 
 ## Best Practices for Using Lifecycle Methods
 
@@ -187,7 +184,6 @@ Let’s build a simple Blazor component to demonstrate these lifecycle methods. 
 3. **Dispose Resources:** Always implement `IDisposable` for components holding unmanaged resources.
 4. **Optimize Re-renders:** Leverage `ShouldRender` to prevent unnecessary updates.
 
----
 
 ## Conclusion
 
