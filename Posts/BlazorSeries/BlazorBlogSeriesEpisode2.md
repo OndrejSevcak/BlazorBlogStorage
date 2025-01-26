@@ -1,6 +1,6 @@
 ---
 title: "Blazor Series Episode 2"
-description: "A deep dive to component lifecycle"
+description: "A deep dive to components and their lifecycle"
 author: "Ondrej Sevcak"
 date: "2025-01-22"
 category: "Blazor"
@@ -11,9 +11,9 @@ hashtags: "#CSharp #DotNet #Blazor"
 In this episode of our Blazor Series, we will delve deep into Blazor components and their lifecycle, a crucial concept for creating efficient and maintainable applications.
 
 
-## What is a Blazor Component?
+### What is a Blazor Component?
 
-Blazor components are the building blocks of Blazor applications. They are reusable pieces of UI written in C#, HTML, and optionally CSS. Each component resides in a `.razor` file and encapsulates its logic, rendering, and event handling. For example:
+Blazor components are the building blocks of Blazor applications. They are reusable pieces of UI written in C#, HTML, and CSS. Each component resides in a `.razor` file and encapsulates its logic, rendering, and event handling. Example Blazor component:
 
 ```razor
 <h3>Counter</h3>
@@ -37,7 +37,7 @@ Blazor components are the building blocks of Blazor applications. They are reusa
 - **Interactivity:** Bind data and handle events seamlessly.
 
 
-## Understanding the Component Lifecycle
+### Understanding the Component Lifecycle
 
 The component lifecycle in Blazor is a sequence of methods and events that Blazor invokes as a component is initialized, rendered, and disposed of. Understanding these lifecycle methods can help you manage state, optimize performance, and debug effectively.
 
@@ -116,7 +116,7 @@ The component lifecycle in Blazor is a sequence of methods and events that Blazo
    ```
 
 
-## Practical Example: Lifecycle in Action
+### Practical Example: Lifecycle in Action
 
 Let’s build a simple Blazor component to demonstrate these lifecycle methods. The component will:
 
@@ -177,7 +177,7 @@ Let’s build a simple Blazor component to demonstrate these lifecycle methods. 
 - Note how rendering is controlled using `ShouldRender`.
 
 
-## Best Practices for Using Lifecycle Methods
+### Best Practices for Using Lifecycle Methods
 
 1. **Minimize Work in Render Methods:** Avoid heavy computation in `ShouldRender` and `OnAfterRender`.
 2. **Async Initialization:** Use `OnInitializedAsync` for asynchronous tasks.
@@ -185,9 +185,4 @@ Let’s build a simple Blazor component to demonstrate these lifecycle methods. 
 4. **Optimize Re-renders:** Leverage `ShouldRender` to prevent unnecessary updates.
 
 
-## Conclusion
-
-Blazor’s component lifecycle provides a powerful way to manage state, respond to changes, and optimize performance. Mastering these lifecycle methods can significantly enhance your ability to build robust and efficient applications. In the next episode, we’ll explore advanced component interactions and state management.
-
-Stay tuned and happy coding!
 
