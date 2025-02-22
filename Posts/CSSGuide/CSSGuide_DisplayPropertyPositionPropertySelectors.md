@@ -88,8 +88,6 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
----
-
 ## 📌 Position Property in CSS
 
 The `position` property controls how an element is placed relative to other elements or the viewport.
@@ -153,8 +151,6 @@ The `position` property controls how an element is placed relative to other elem
   top: 0;
 }
 ```
-
----
 
 ## 📌 Most Useful CSS Selectors
 
@@ -279,8 +275,6 @@ p::first-letter {
   font-size: 30px;
 }
 ```
-
----
 
 ## 🎯 Conclusion
 - Use **`display`** for layout and structure.
