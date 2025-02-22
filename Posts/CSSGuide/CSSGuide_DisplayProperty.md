@@ -1,5 +1,5 @@
 ---
-title: "CSS Guide"
+title: "Display Property"
 description: "Display Property"
 author: "Ondrej Sevcak"
 date: "2024-02-02"

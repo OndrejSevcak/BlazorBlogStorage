@@ -1,5 +1,5 @@
 ---
-title: "CSS Guide"
+title: "Most useful Selectors"
 description: "Most useful Selectors"
 author: "Ondrej Sevcak"
 date: "2024-02-02"

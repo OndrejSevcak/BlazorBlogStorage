@@ -1,5 +1,5 @@
 ---
-title: "CSS Guide"
+title: "Position Property"
 description: "Position Property"
 author: "Ondrej Sevcak"
 date: "2024-02-02"
