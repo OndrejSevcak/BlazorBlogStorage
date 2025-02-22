@@ -1,6 +1,6 @@
 ---
-title: "Blazor Series Episode 2"
-description: "A deep dive to components and their lifecycle"
+title: "Components and their lifecycle"
+description: "Components and their lifecycle"
 author: "Ondrej Sevcak"
 date: "2025-01-22"
 category: "Blazor"

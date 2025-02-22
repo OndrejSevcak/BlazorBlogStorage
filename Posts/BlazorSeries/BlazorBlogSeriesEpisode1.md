@@ -1,5 +1,5 @@
 ---
-title: "Blazor Series Episode 1"
+title: "Intro to Blazor"
 description: "Intro to Blazor, WebAssembly, SignalR and Hosting models for Blazor in .NET 8"
 author: "Ondrej Sevcak"
 date: "2024-12-30"
