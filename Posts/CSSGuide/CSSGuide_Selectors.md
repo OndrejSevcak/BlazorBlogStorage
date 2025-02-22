@@ -7,7 +7,6 @@ category: "CSS"
 hashtags: "#CSS #FrontEnd #Basics"
 ---
 
-# CSS Guide: Most useful Selectors
 
 ## 📌 Most Useful CSS Selectors
 

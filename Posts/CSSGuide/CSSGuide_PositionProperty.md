@@ -7,8 +7,6 @@ category: "CSS"
 hashtags: "#CSS #FrontEnd #Basics"
 ---
 
-# CSS Guide: Position Property
-
 ## 📌 Position Property in CSS
 
 The `position` property controls how an element is placed relative to other elements or the viewport.

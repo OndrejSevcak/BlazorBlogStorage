@@ -7,7 +7,6 @@ category: "CSS"
 hashtags: "#CSS #FrontEnd #Basics"
 ---
 
-# CSS Guide: Display Property
 
 ## 📌 Display Property in CSS
 
