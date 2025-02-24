@@ -12,7 +12,7 @@ hashtags: "#OAS #API #Backend"
 - An industry standard to design and document HTTP APIs
 - Language-angnostic API interface
 - Can be written-first by analyst or API designers 
-- Or generated from code after development
+- Or generated from code by developers
 
 ## How to write you first OpenAPI Specification
 
@@ -134,4 +134,135 @@ properties:
       - "value3"
 ```
 
-To be continued...
+<br>
+
+### Lets write out first OpenAPI Specification
+
+- what tools do we need? Lets start in Visual Studio Code by creating a .yaml file
+
+- what API will we design? We have been asked to design an API layer for **Car rental company**
+
+- the whole OpenAPI Specification document is available for reference: [here](https://swagger.io/specification/v3/)
+
+## 1. Defining schemas in OAS
+
+- lets start by creating schemas for our objects
+- schemas belong to section called *components*
+
+### Car object schema
+
+```yaml
+components:
+    schemas:
+        Car:
+            type: object
+            properties:
+                id:
+                    type: string
+                make: 
+                    type: string
+                model: 
+                    type: string
+                category:
+                    type: string
+                    default: SUV
+                    enum:
+                     - SUV
+                     - HotHatch
+                     - Sport
+                available:
+                    type: boolean
+```
+
+- Next we will create schema definition for object representing a *Customer* object
+
+## Customer schema  
+
+```yaml
+Customer:
+    type: object
+    properties:
+    id:
+        type: string
+    name:
+        type: string
+    email:
+        type: string
+```
+And finally the...
+
+## Reservation schema
+
+```yaml
+Reservation:
+    type: object
+    properties:
+    id:
+        type: string
+    customerId:
+        type: string
+    carId:
+        type: string
+    startDate:
+        type: string
+        format: date
+    endDate:
+        type: string
+        format: date
+```
+
+So far so good!
+
+## 2. Defining the API paths
+
+- lets add a new section to our .yaml file called **paths:**
+
+### Get a list of available cars
+
+```yaml
+paths:
+  /cars:    #this defines the API path 
+
+    #used HTTP method within the /cars path
+    get:   
+      summary: Get a list of available cars
+      operationId: getCars
+      #below we define each reponse type with status code, content type and link to object schema that will be returned
+      responses:
+        '200':
+          description: A list of available cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Car'
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    #used HTTP method within the /cars path
+    post:
+      summary: Add a new car to the fleet
+      operationId: addCar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Car'
+      responses:
+        '201':
+          description: Car added successfully
+          content:
+            application/json:
+                schema:
+                    type: string
+                    example: SkodaOctavia54832132sds
+                    description: Id of added car
+```
+
+**To be continued...**
