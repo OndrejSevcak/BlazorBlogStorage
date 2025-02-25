@@ -7,25 +7,23 @@ category: "CSS"
 hashtags: "#CSS #FrontEnd #Basics"
 ---
 
-## 📌 Position Property in CSS
+## Position Property in CSS
 
 The `position` property controls how an element is placed relative to other elements or the viewport.
 
-### 🔹 `static` (Default)
+### `static` (Default)
 - **Normal document flow.**
 - `top`, `left`, `right`, `bottom` **do not work**.
 
-✅ **Example:**
 ```css
 .static-example {
   position: static;
 }
 ```
 
-### 🔹 `relative`
+###  `relative`
 - Positioned **relative to its normal position**.
 
-✅ **Example:**
 ```css
 .relative-example {
   position: relative;
@@ -34,11 +32,10 @@ The `position` property controls how an element is placed relative to other elem
 }
 ```
 
-### 🔹 `absolute`
+###  `absolute`
 - Positioned **relative to the nearest positioned ancestor**.
 - If no ancestor is positioned, it is **relative to the `<body>`**.
 
-✅ **Example:**
 ```css
 .absolute-example {
   position: absolute;
@@ -47,11 +44,10 @@ The `position` property controls how an element is placed relative to other elem
 }
 ```
 
-### 🔹 `fixed`
+### `fixed`
 - Positioned **relative to the viewport**.
 - Does **not move** when scrolling.
 
-✅ **Example:**
 ```css
 .fixed-example {
   position: fixed;
@@ -60,10 +56,9 @@ The `position` property controls how an element is placed relative to other elem
 }
 ```
 
-### 🔹 `sticky`
+###  `sticky`
 - Acts like `relative`, but becomes `fixed` when scrolled to a set position.
 
-✅ **Example:**
 ```css
 .sticky-example {
   position: sticky;
@@ -71,7 +66,7 @@ The `position` property controls how an element is placed relative to other elem
 }
 ```
 
-## 🎯 Conclusion
+## Summary
 - Use **`display`** for layout and structure.
 - Use **`position`** for precise element placement.
 

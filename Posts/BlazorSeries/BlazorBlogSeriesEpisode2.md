@@ -8,15 +8,12 @@ hashtags: "#CSharp #DotNet #Blazor"
 ---
 
 
-In this episode of our Blazor Series, we will delve deep into Blazor components and their lifecycle, a crucial concept for creating efficient and maintainable applications.
-
 
 ### What is a Blazor Component?
 
 Blazor components are the building blocks of Blazor applications. They are reusable pieces of UI written in C#, HTML, and CSS. Each component resides in a `.razor` file and encapsulates its logic, rendering, and event handling. Example Blazor component:
 
-✅ **Example:**
-```razor
+```csharp
 <h3>Counter</h3>
 <p>Current count: @currentCount</p>
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
@@ -48,7 +45,6 @@ The component lifecycle in Blazor is a sequence of methods and events that Blazo
    - Triggered when the component is initialized.
    - Used to set up component state or initialize data from services.
 
-   ✅ **Example:**
    ```csharp
    protected override void OnInitialized()
    {
@@ -68,7 +64,6 @@ The component lifecycle in Blazor is a sequence of methods and events that Blazo
    - Invoked when component parameters are set or updated.
    - Useful for responding to changes in parent component data.
 
-   ✅ **Example:**
    ```csharp
    [Parameter] public string Title { get; set; }
 
@@ -82,7 +77,6 @@ The component lifecycle in Blazor is a sequence of methods and events that Blazo
    - Determines whether the component should re-render.
    - Override this method to optimize rendering performance.
 
-   ✅ **Example:**
    ```csharp
    protected override bool ShouldRender()
    {
@@ -94,7 +88,6 @@ The component lifecycle in Blazor is a sequence of methods and events that Blazo
    - Invoked after the component has been rendered.
    - Ideal for interacting with the DOM or initializing JavaScript libraries.
 
-   ✅ **Example:**
    ```csharp
    protected override async Task OnAfterRenderAsync(bool firstRender)
    {
@@ -108,7 +101,6 @@ The component lifecycle in Blazor is a sequence of methods and events that Blazo
 5. **`Dispose`**
    - Used to clean up resources when the component is removed from the UI.
 
-   ✅ **Example:**
    ```csharp
    public void Dispose()
    {
@@ -127,8 +119,7 @@ Let’s build a simple Blazor component to demonstrate these lifecycle methods. 
 
 **Component Code:**
 
-✅ **Example:**
-```razor
+```csharp
 @page "/lifecycle-demo"
 <h3>Lifecycle Demo</h3>
 

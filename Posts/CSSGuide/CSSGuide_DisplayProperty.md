@@ -8,16 +8,15 @@ hashtags: "#CSS #FrontEnd #Basics"
 ---
 
 
-## 📌 Display Property in CSS
+## Display Property in CSS
 
 The `display` property controls how elements are displayed in the document flow. Below are the most commonly used values:
 
-### 🔹 `block`
+### `block`
 - Takes the **full width** of its parent.
 - Starts on a **new line**.
 - Common for `<div>`, `<p>`, `<h1>`-`<h6>`, etc.
 
-✅ **Example:**
 ```css
 .block-example {
   display: block;
@@ -26,12 +25,12 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
-### 🔹 `inline`
+### `inline`
 - Takes up **only as much width as necessary**.
 - Does **not** start on a new line.
 - Common for `<span>`, `<a>`, `<strong>`, etc.
 
-✅ **Example:**
+
 ```css
 .inline-example {
   display: inline;
@@ -39,10 +38,9 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
-### 🔹 `inline-block`
+### `inline-block`
 - Behaves like `inline`, but allows **setting width and height**.
 
-✅ **Example:**
 ```css
 .inline-block-example {
   display: inline-block;
@@ -52,11 +50,10 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
-### 🔹 `flex`
+### `flex`
 - Turns an element into a **flex container**.
 - Makes its children follow **flexbox rules**.
 
-✅ **Example:**
 ```css
 .flex-container {
   display: flex;
@@ -65,11 +62,10 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
-### 🔹 `grid`
+###  `grid`
 - Turns an element into a **grid container**.
 - Uses **CSS Grid** for layout.
 
-✅ **Example:**
 ```css
 .grid-container {
   display: grid;
@@ -77,18 +73,16 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
-### 🔹 `none`
+### `none`
 - Hides the element completely (removes it from layout).
 
-✅ **Example:**
 ```css
 .hidden {
   display: none;
 }
 ```
 
-
-## 🎯 Conclusion
+##  Summary
 - Use **`display`** for layout and structure.
 - Use **`position`** for precise element placement.
 

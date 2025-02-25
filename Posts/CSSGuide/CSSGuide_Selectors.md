@@ -8,12 +8,11 @@ hashtags: "#CSS #FrontEnd #Basics"
 ---
 
 
-## 📌 Most Useful CSS Selectors
+## Most Useful CSS Selectors
 
-### 🔹 Universal Selector (`*`)
+###  Universal Selector (`*`)
 - Selects **all elements**.
 
-✅ **Example:**
 ```css
 * {
   margin: 0;
@@ -21,88 +20,81 @@ hashtags: "#CSS #FrontEnd #Basics"
 }
 ```
 
-### 🔹 Type Selector (`element`)
+### Type Selector (`element`)
 - Selects **all instances** of a specific tag.
 
-✅ **Example:**
 ```css
 p {
   color: blue;
 }
 ```
 
-### 🔹 Class Selector (`.classname`)
+###  Class Selector (`.classname`)
 - Selects **all elements** with a given class.
 
-✅ **Example:**
 ```css
 .button {
   background: red;
 }
 ```
 
-### 🔹 ID Selector (`#idname`)
+### ID Selector (`#idname`)
 - Selects a **single element** with a given ID.
 
-✅ **Example:**
 ```css
 #header {
   background: black;
 }
 ```
 
-### 🔹 Descendant Selector (`parent descendant`)
+### Descendant Selector (`parent descendant`)
 - Selects **nested elements** inside another element.
 
-✅ **Example:**
 ```css
 nav ul {
   list-style: none;
 }
 ```
 
-### 🔹 Child Selector (`parent > child`)
+### Child Selector (`parent > child`)
 - Selects **only direct children**.
 
-✅ **Example:**
 ```css
 div > p {
   color: green;
 }
 ```
 
-### 🔹 Adjacent Sibling Selector (`element + sibling`)
+### Adjacent Sibling Selector (`element + sibling`)
 - Selects **the immediate next sibling**.
 
-✅ **Example:**
 ```css
 h1 + p {
   color: red;
 }
 ```
 
-### 🔹 General Sibling Selector (`element ~ sibling`)
+###  General Sibling Selector (`element ~ sibling`)
 - Selects **all siblings after a given element**.
 
-✅ **Example:**
 ```css
 h1 ~ p {
   color: blue;
 }
 ```
 
-### 🔹 Attribute Selector (`[attribute]`)
+### Attribute Selector (`[attribute]`)
 - Selects elements with a specific attribute.
 
-✅ **Example:**
+
 ```css
 input[type="text"] {
   border: 2px solid blue;
 }
 ```
 
-### 🔹 Pseudo-Classes (`:hover`, `:first-child`, `:nth-child(n)`, `:not()`, etc.)
-✅ **Examples:**
+### Pseudo-Classes (`:hover`, `:first-child`, `:nth-child(n)`, `:not()`, etc.)
+
 ```css
 a:hover {
   color: red;
@@ -119,8 +111,8 @@ button:not(.disabled) {
 }
 ```
 
-### 🔹 Pseudo-Elements (`::before`, `::after`)
-✅ **Examples:**
+###  Pseudo-Elements (`::before`, `::after`)
+
 ```css
 h1::before {
   content: "🔥 ";
