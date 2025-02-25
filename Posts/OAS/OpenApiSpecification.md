@@ -136,13 +136,25 @@ properties:
 
 <br>
 
+## What is the OAS document structure?
+
+The OpenAPI Specification document contains following sections:
+
+1. OpenAPI - version number
+2. Info - API metadata
+3. Servers - connectivity to target servers
+4. Paths - API endpoints with their HTTP methods
+5. Components - reusable object definitions
+6. Security - declaration of security mechanisms
+7. Tags - list of tags with additional metadata 
+
+
 ### Lets write out first OpenAPI Specification
 
 - what tools do we need? Lets start in Visual Studio Code by creating a .yaml file
-
 - what API will we design? We have been asked to design an API layer for **Car rental company**
-
-- the whole OpenAPI Specification document is available for reference: [here](https://swagger.io/specification/v3/)
+- [OpenAPI Specification reference](https://swagger.io/specification/v3/)
+- [example OAS in swagger editor](https://editor.swagger.io/)
 
 ## 1. Defining schemas in OAS
 
@@ -211,13 +223,25 @@ Reservation:
         format: date
 ```
 
+## Error reponse schema
+
+```yaml
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+```
+
 So far so good!
 
 ## 2. Defining the API paths
 
 - lets add a new section to our .yaml file called **paths:**
 
-### Get a list of available cars
+### Get a list of available cars | Add new car
 
 ```yaml
 paths:
@@ -265,4 +289,296 @@ paths:
                     description: Id of added car
 ```
 
-**To be continued...**
+### Get all customers | Register new customer
+
+```yaml  
+/customers:
+    get:
+      summary: Get a list of customers
+      operationId: getCustomers
+      responses:
+        '200':
+          description: A list of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    post:
+      summary: Register a new customer
+      operationId: registerCustomer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: Customer registered successfully
+            content:
+            application/json:
+                schema:
+                    type: string
+                    example: uid56sd5fsdfs
+                    description: Id of new customer
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+```
+
+### Reservations
+
+```yaml
+  /reservations:
+    post:
+      summary: Create a new car reservation
+      operationId: createReservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+      responses:
+        '201':
+          description: Reservation created successfully
+          content:
+            application/json:
+              schema:
+                  type: string
+                  example: uid56sd5fsdfs
+                  description: Id of the created reservation
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      summary: Get a list of reservations
+      operationId: getReservations
+      responses:
+        '200':
+          description: A list of reservations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reservation'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+```
+
+## The whole specification:
+
+```yaml
+openapi: 3.0.0
+info:
+  title: Car Rental API
+  description: API for managing car rentals
+  version: 1.0.0
+servers:
+  - url: https://api.carrental.com/v1
+paths:
+  /cars:
+    get:
+      summary: Get a list of available cars
+      operationId: getCars
+      responses:
+        '200':
+          description: A list of available cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Car'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Add a new car to the fleet
+      operationId: addCar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Car'
+      responses:
+        '201':
+          description: Car added successfully
+          content:
+            application/json:
+              schema:
+                type: string
+                example: uid56sd5fsdfs
+                description: Id of the created resource
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /customers:
+    get:
+      summary: Get a list of customers
+      operationId: getCustomers
+      responses:
+        '200':
+          description: A list of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Register a new customer
+      operationId: registerCustomer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: Customer registered successfully
+          content:
+            application/json:
+              schema:
+                type: string
+                example: uid56sd5fsdfs
+                description: Id of the created resource
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  
+  /reservations:
+    post:
+      summary: Create a new car reservation
+      operationId: createReservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+      responses:
+        '201':
+          description: Reservation created successfully
+          content:
+            application/json:
+              schema:
+                type: string
+                example: uid56sd5fsdfs
+                description: Id of the created resource
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      summary: Get a list of reservations
+      operationId: getReservations
+      responses:
+        '200':
+          description: A list of reservations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reservation'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Car:
+      type: object
+      properties:
+        id:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        year:
+          type: integer
+        available:
+          type: boolean
+        category:
+          type: string
+          enum: [SUV, Hatch, Sport]
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+    Reservation:
+      type: object
+      properties:
+        id:
+          type: string
+        customerId:
+          type: string
+        carId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+```
+
+If you copy the whole yaml file and paste it to editor.swagger.io, you will see following:
+
+![swagger editor](image.png)
