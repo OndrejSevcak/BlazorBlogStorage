@@ -378,8 +378,8 @@ paths:
 
 ## The whole specification:
 
-- link to file
+- [link to file](https://raw.githubusercontent.com/OndrejSevcak/BlazorBlogStorage/39662514a0982648296559bf57c342163a352b30/Posts/OAS/car-rental-oas.yaml)
 
 If you copy the whole yaml file and paste it to editor.swagger.io, you will see following:
 
-![swagger editor](https://github.com/OndrejSevcak/BlazorBlogStorage/blob/main/Posts/OAS/image.png)
+![!\[swagger editor\](https://github.com/OndrejSevcak/BlazorBlogStorage/blob/39662514a0982648296559bf57c342163a352b30/Posts/OAS/image.png)](https://raw.githubusercontent.com/OndrejSevcak/BlazorBlogStorage/39662514a0982648296559bf57c342163a352b30/Posts/OAS/image.png)
