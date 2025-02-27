@@ -15,3 +15,4 @@ hashtags: "#CSharp #DotNet #AI #VSCode"
 4. Vytvořte si nový projekt - klidně Console aplikaci
 5. Ve VSCode si otevřete Copilot chat a přepnete se na Copilot edits
 
+![VSCode](https://raw.githubusercontent.com/OndrejSevcak/BlazorBlogStorage/refs/heads/main/Posts/AICoding/GHCopilotEditsVSCode.png)
