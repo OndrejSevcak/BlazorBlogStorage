@@ -7,14 +7,14 @@ category: "OAS"
 hashtags: "#OAS #API #Backend"
 ---
 
-## What is OpenAPI Specification
+### What is OpenAPI Specification
 
 - An industry standard to design and document HTTP APIs
 - Language-angnostic API interface
 - Can be written-first by analyst or API designers 
 - Or generated from code by developers
 
-## How to write you first OpenAPI Specification
+### How to write you first OpenAPI Specification
 
  - OpenAPI specification are written in JSON or YAML formats. 
  - The syntax for writing the specification is called JSON Schema (Yes, you can write JSON Schema in YAML file)
@@ -60,27 +60,18 @@ JSON Schema is a tool for validating, structuring, and documenting JSON data. It
 Basic JSON Schema structure looks like this:
 
 ```yaml
-# Specifies the version of JSON Schema being used
 $schema: "https://json-schema.org/draft/2020-12/schema"
 
-# Title and description provide metadata about the schema
 title: "MenuItem"
 description: "A schema representing a menu item."
 
-# Indicates that the data should be an object
 type: "object"
 
-# Defines the properties of the object
 properties:
-  # Property 1
   property1:
-    # Property type (string, number, boolean, object, array)
-    type: "string"
-    # Property description
+    type: "string" #(string, number, boolean, object, array)
     description: "Description of property 1"
-    # Property example value should be valid for the property type
     example: "Example value"
-# Defines that the object is required to have the following properties
 required:
   - property1
   - property2
@@ -136,17 +127,17 @@ properties:
 
 <br>
 
-## What is the OAS document structure?
+### How is the OAS document structured?
 
 The OpenAPI Specification document contains following sections:
 
-1. OpenAPI - version number
-2. Info - API metadata
-3. Servers - connectivity to target servers
-4. Paths - API endpoints with their HTTP methods
-5. Components - reusable object definitions
-6. Security - declaration of security mechanisms
-7. Tags - list of tags with additional metadata 
+1. **OpenAPI** - version number
+2. **Info** - API metadata
+3. **Servers** - connectivity to target servers
+4. **Paths** - API endpoints with their HTTP methods
+5. **Components** - reusable object definitions
+6. **Security** - declaration of security mechanisms
+7. **Tags** - list of tags with additional metadata 
 
 
 ### Lets write out first OpenAPI Specification
@@ -156,12 +147,12 @@ The OpenAPI Specification document contains following sections:
 - [OpenAPI Specification reference](https://swagger.io/specification/v3/)
 - [example OAS in swagger editor](https://editor.swagger.io/)
 
-## 1. Defining schemas in OAS
+### 1. Defining schemas in OAS
 
 - lets start by creating schemas for our objects
 - schemas belong to section called *components*
 
-### Car object schema
+#### Car object schema
 
 ```yaml
 components:
@@ -188,7 +179,7 @@ components:
 
 - Next we will create schema definition for object representing a *Customer* object
 
-## Customer schema  
+### Customer schema  
 
 ```yaml
 Customer:
@@ -203,7 +194,7 @@ Customer:
 ```
 And finally the...
 
-## Reservation schema
+#### Reservation schema
 
 ```yaml
 Reservation:
@@ -223,7 +214,7 @@ Reservation:
         format: date
 ```
 
-## Error reponse schema
+#### Error reponse schema
 
 ```yaml
     Error:
@@ -234,14 +225,13 @@ Reservation:
         message:
           type: string
 ```
+<br>
 
-So far so good!
-
-## 2. Defining the API paths
+### 2. Defining the API paths
 
 - lets add a new section to our .yaml file called **paths:**
 
-### Get a list of available cars | Add new car
+#### Get a list of available cars | Add new car
 
 ```yaml
 paths:
@@ -289,7 +279,7 @@ paths:
                     description: Id of added car
 ```
 
-### Get all customers | Register new customer
+#### Get all customers | Register new customer
 
 ```yaml  
 /customers:
@@ -338,7 +328,7 @@ paths:
                 $ref: "#/components/schemas/Error"
 ```
 
-### Reservations
+#### Reservations
 
 ```yaml
   /reservations:
@@ -388,197 +378,8 @@ paths:
 
 ## The whole specification:
 
-```yaml
-openapi: 3.0.0
-info:
-  title: Car Rental API
-  description: API for managing car rentals
-  version: 1.0.0
-servers:
-  - url: https://api.carrental.com/v1
-paths:
-  /cars:
-    get:
-      summary: Get a list of available cars
-      operationId: getCars
-      responses:
-        '200':
-          description: A list of available cars
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Car'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-    post:
-      summary: Add a new car to the fleet
-      operationId: addCar
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Car'
-      responses:
-        '201':
-          description: Car added successfully
-          content:
-            application/json:
-              schema:
-                type: string
-                example: uid56sd5fsdfs
-                description: Id of the created resource
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  
-  /customers:
-    get:
-      summary: Get a list of customers
-      operationId: getCustomers
-      responses:
-        '200':
-          description: A list of customers
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Customer'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-    post:
-      summary: Register a new customer
-      operationId: registerCustomer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Customer'
-      responses:
-        '201':
-          description: Customer registered successfully
-          content:
-            application/json:
-              schema:
-                type: string
-                example: uid56sd5fsdfs
-                description: Id of the created resource
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  
-  /reservations:
-    post:
-      summary: Create a new car reservation
-      operationId: createReservation
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Reservation'
-      responses:
-        '201':
-          description: Reservation created successfully
-          content:
-            application/json:
-              schema:
-                type: string
-                example: uid56sd5fsdfs
-                description: Id of the created resource
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-    get:
-      summary: Get a list of reservations
-      operationId: getReservations
-      responses:
-        '200':
-          description: A list of reservations
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Reservation'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-components:
-  schemas:
-    Car:
-      type: object
-      properties:
-        id:
-          type: string
-        make:
-          type: string
-        model:
-          type: string
-        year:
-          type: integer
-        available:
-          type: boolean
-        category:
-          type: string
-          enum: [SUV, Hatch, Sport]
-    Customer:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        email:
-          type: string
-    Reservation:
-      type: object
-      properties:
-        id:
-          type: string
-        customerId:
-          type: string
-        carId:
-          type: string
-        startDate:
-          type: string
-          format: date
-        endDate:
-          type: string
-          format: date
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-```
+- link to file
 
 If you copy the whole yaml file and paste it to editor.swagger.io, you will see following:
 
-![swagger editor](image.png)
+![swagger editor](https://github.com/OndrejSevcak/BlazorBlogStorage/blob/main/Posts/OAS/image.png)
