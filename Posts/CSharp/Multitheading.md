@@ -45,6 +45,19 @@ Cílem **multithreadingu** je provádění více operací ve stejný okamžik - 
 
 - poskytuje metody pro paralelní zpracování
 
-#### Metody třídy Parallel
-
 **Parallel.For**
+
+- metoda exekuuje for loop, ve kterém by jednotlivé iterace měly běžet paralelně
+
+**Příklad - For loop s 10 opakováními, kde jeda iterace trvá 1 sekundu zpracovaný paralelně**
+```csharp
+    Parallel.For(0, 10, i =>
+    {
+        Console.WriteLine($"Task {i} started");
+        Task.Delay(1000).Wait();
+        Console.WriteLine($"Task {i} completed");
+    });
+```
+
+- tento kód se díky paralelnímu zpracování dokončí ne za 10s, ale za 1,1s
+![Parallel.For Demo](https://raw.githubusercontent.com/OndrejSevcak/BlazorBlogStorage/refs/heads/main/Posts/CSharp/ParallelForDemo.png)
