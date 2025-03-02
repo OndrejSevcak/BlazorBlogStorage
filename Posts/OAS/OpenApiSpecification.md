@@ -1,31 +1,31 @@
 ---
-title: "How to write your first OAS"
-description: "How to write your first Open API Specification"
+title: "Jak napsat svou první OAS"
+description: "Jak napsat svou první Open API Specification"
 author: "Ondrej Sevcak"
 date: "2025-02-23"
 category: "OAS"
 hashtags: "#OAS #API #Backend"
 ---
 
-### What is OpenAPI Specification
+### Co je OpenAPI specifikace
 
-- An industry standard to design and document HTTP APIs
-- Language-angnostic API interface
-- Can be written-first by analyst or API designers 
-- Or generated from code by developers
+- Průmyslový standard pro návrh a dokumentaci HTTP API
+- Jazykově nezávislé API rozhraní
+- Může být napsáno před zahájením vývoje - design first
+- Nebo generováno z kódu - code first
 
-### How to write you first OpenAPI Specification
+### Jak napsat svou první OpenAPI Specifikaci
 
- - OpenAPI specification are written in JSON or YAML formats. 
- - The syntax for writing the specification is called JSON Schema (Yes, you can write JSON Schema in YAML file)
+- OpenAPI specifikace jsou psány ve formátech JSON nebo YAML.
+- Syntaxe pro psaní specifikace se nazývá JSON Schema (Ano, JSON Schema můžete psát v YAML souboru)
 
- ### JSON Schema
+### JSON Schema
 
-JSON Schema is a tool for validating, structuring, and documenting JSON data. It provides a standard way to define the expected structure, data types, and constraints for JSON objects.
+JSON Schema je nástroj pro validaci, strukturování a dokumentaci JSON dat. Poskytuje standardní způsob definování očekávané struktury, datových typů a omezení pro JSON objekty.
 
- [json-schema-reference](https://json-schema.org/understanding-json-schema/basics)
+[json-schema-reference](https://json-schema.org/understanding-json-schema/basics)
 
-**Example JSON Schema:**
+**Příklad JSON Schema:**
 
 ```json
 {
@@ -55,29 +55,29 @@ JSON Schema is a tool for validating, structuring, and documenting JSON data. It
 }
 ```
 
-### JSON Schema basics
+### Základy JSON Schema
 
-Basic JSON Schema structure looks like this:
+Základní struktura JSON Schema vypadá takto:
 
 ```yaml
 $schema: "https://json-schema.org/draft/2020-12/schema"
 
 title: "MenuItem"
-description: "A schema representing a menu item."
+description: "Schéma reprezentující položku menu."
 
 type: "object"
 
 properties:
   property1:
     type: "string" #(string, number, boolean, object, array)
-    description: "Description of property 1"
-    example: "Example value"
+    description: "Popis vlastnosti 1"
+    example: "Příklad hodnoty"
 required:
   - property1
   - property2
 ```
 
-**Simple arrays:**
+**Jednoduché pole:**
 
 ```yaml
 type: "object"
@@ -87,10 +87,10 @@ properties:
     minItems: 0
     maxItems: 500
     items:
-      # definition of the item in the array
+      # definice položky v poli
 ```
 
-**Complex arrays:**
+**Komplexní pole:**
 
 ```yaml
 type: "object"
@@ -115,7 +115,7 @@ properties:
 ```yaml
 type: "object"
 properties:
-  # Enum values
+  # Hodnoty výčtu
   enumProperty:
     type: "string"
     default: "value2"
@@ -127,32 +127,31 @@ properties:
 
 <br>
 
-### How is the OAS document structured?
+### Jak je strukturován dokument OAS?
 
-The OpenAPI Specification document contains following sections:
+Dokument OpenAPI Specification obsahuje následující sekce:
 
-1. **OpenAPI** - version number
-2. **Info** - API metadata
-3. **Servers** - connectivity to target servers
-4. **Paths** - API endpoints with their HTTP methods
-5. **Components** - reusable object definitions
-6. **Security** - declaration of security mechanisms
-7. **Tags** - list of tags with additional metadata 
+1. **OpenAPI** - číslo verze
+2. **Info** - metadata API
+3. **Servers** - připojení k cílovým serverům
+4. **Paths** - API koncové body s jejich HTTP metodami
+5. **Components** - znovupoužitelné definice objektů
+6. **Security** - deklarace bezpečnostních mechanismů
+7. **Tags** - seznam tagů s dalšími metadata
 
+### Pojďme napsat naši první OpenAPI Specifikaci
 
-### Lets write out first OpenAPI Specification
-
-- what tools do we need? Lets start in Visual Studio Code by creating a .yaml file
-- what API will we design? We have been asked to design an API layer for **Car rental company**
+- jaké nástroje potřebujeme? Začněme ve Visual Studio Code vytvořením .yaml souboru
+- jaké API budeme navrhovat? Byli jsme požádáni o návrh API vrstvy pro **CAR Rental - autopůjčovnu**
 - [OpenAPI Specification reference](https://swagger.io/specification/v3/)
-- [example OAS in swagger editor](https://editor.swagger.io/)
+- [příklad OAS ve swagger editoru](https://editor.swagger.io/)
 
-### 1. Defining schemas in OAS
+### 1. Definování schémat v OAS
 
-- lets start by creating schemas for our objects
-- schemas belong to section called *components*
+- začněme vytvořením schémat pro naše objekty
+- schémata patří do sekce nazvané *components*
 
-#### Car object schema
+#### Schéma objektu auto - Car
 
 ```yaml
 components:
@@ -177,9 +176,9 @@ components:
                     type: boolean
 ```
 
-- Next we will create schema definition for object representing a *Customer* object
+- Dále vytvoříme definici schématu pro objekt reprezentující *Customer* objekt
 
-### Customer schema  
+### Schéma Customer - zákazník
 
 ```yaml
 Customer:
@@ -192,9 +191,9 @@ Customer:
     email:
         type: string
 ```
-And finally the...
+A nakonec...
 
-#### Reservation schema
+#### Schéma Reservation - Reservace
 
 ```yaml
 Reservation:
@@ -214,7 +213,7 @@ Reservation:
         format: date
 ```
 
-#### Error reponse schema
+#### Schéma pro chybovu hlášku - Error reponse
 
 ```yaml
     Error:
@@ -227,24 +226,24 @@ Reservation:
 ```
 <br>
 
-### 2. Defining the API paths
+### 2. Definování API endpointů
 
-- lets add a new section to our .yaml file called **paths:**
+- přidejme novou sekci do našeho .yaml souboru nazvanou **paths:**
 
-#### Get a list of available cars | Add new car
+#### Endpoint pro vrácení seznamu dostupných aut | Endpoint pro přidání nového auta
 
 ```yaml
 paths:
-  /cars:    #this defines the API path 
+  /cars:    #definuje API cestu 
 
-    #used HTTP method within the /cars path
+    #použitá HTTP metoda v rámci /cars cesty
     get:   
-      summary: Get a list of available cars
+      summary: Vrítí všechna dostupná auta
       operationId: getCars
-      #below we define each reponse type with status code, content type and link to object schema that will be returned
+      #níže definujeme každý typ odpovědi s kódem stavu, typem obsahu a odkazem na schéma objektu, který bude vrácen
       responses:
         '200':
-          description: A list of available cars
+          description: Vrátí seznam všech dostupných aut
           content:
             application/json:
               schema:
@@ -252,15 +251,15 @@ paths:
                 items:
                   $ref: '#/components/schemas/Car'
         "500":
-          description: Internal server error
+          description: Interní chyba serveru
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
 
-    #used HTTP method within the /cars path
+    #použitá HTTP metoda v rámci /cars cesty
     post:
-      summary: Add a new car to the fleet
+      summary: Přidání nového auta do flotily
       operationId: addCar
       requestBody:
         required: true
@@ -270,25 +269,25 @@ paths:
               $ref: '#/components/schemas/Car'
       responses:
         '201':
-          description: Car added successfully
+          description: Auto úspěšně přidáno
           content:
             application/json:
                 schema:
                     type: string
                     example: SkodaOctavia54832132sds
-                    description: Id of added car
+                    description: Id přidaného auta
 ```
 
-#### Get all customers | Register new customer
+#### Získat všechny zákazníky | Registrovat nového zákazníka
 
 ```yaml  
 /customers:
     get:
-      summary: Get a list of customers
+      summary: Získat seznam zákazníků
       operationId: getCustomers
       responses:
         '200':
-          description: A list of customers
+          description: Seznam zákazníků
           content:
             application/json:
               schema:
@@ -296,14 +295,14 @@ paths:
                 items:
                   $ref: '#/components/schemas/Customer'
         '500':
-          description: Internal server error
+          description: Interní chyba serveru
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
 
     post:
-      summary: Register a new customer
+      summary: Registrovat nového zákazníka
       operationId: registerCustomer
       requestBody:
         required: true
@@ -313,27 +312,27 @@ paths:
               $ref: '#/components/schemas/Customer'
       responses:
         '201':
-          description: Customer registered successfully
+          description: Zákazník úspěšně registrován
             content:
             application/json:
                 schema:
                     type: string
                     example: uid56sd5fsdfs
-                    description: Id of new customer
+                    description: Id nového zákazníka
         '500':
-          description: Internal server error
+          description: Interní chyba serveru
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
 ```
 
-#### Reservations
+#### Rezervace
 
 ```yaml
   /reservations:
     post:
-      summary: Create a new car reservation
+      summary: Vytvořit novou rezervaci auta
       operationId: createReservation
       requestBody:
         required: true
@@ -343,25 +342,25 @@ paths:
               $ref: '#/components/schemas/Reservation'
       responses:
         '201':
-          description: Reservation created successfully
+          description: Rezervace úspěšně vytvořena
           content:
             application/json:
               schema:
                   type: string
                   example: uid56sd5fsdfs
-                  description: Id of the created reservation
+                  description: Id vytvořené rezervace
         '500':
-          description: Internal server error
+          description: Interní chyba serveru
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
     get:
-      summary: Get a list of reservations
+      summary: Získat seznam rezervací
       operationId: getReservations
       responses:
         '200':
-          description: A list of reservations
+          description: Seznam rezervací
           content:
             application/json:
               schema:
@@ -369,17 +368,17 @@ paths:
                 items:
                   $ref: '#/components/schemas/Reservation'
         '500':
-          description: Internal server error
+          description: Interní chyba serveru
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
 ```
 
-## The whole specification:
+## Celá specifikace:
 
-- [link to file](https://raw.githubusercontent.com/OndrejSevcak/BlazorBlogStorage/39662514a0982648296559bf57c342163a352b30/Posts/OAS/car-rental-oas.yaml)
+- [odkaz na soubor](https://raw.githubusercontent.com/OndrejSevcak/BlazorBlogStorage/39662514a0982648296559bf57c342163a352b30/Posts/OAS/car-rental-oas.yaml)
 
-If you copy the whole yaml file and paste it to editor.swagger.io, you will see following:
+Pokud zkopírujete celý yaml soubor a vložíte jej do editor.swagger.io, uvidíte následující swagger pro naše API:
 
 ![!\[swagger editor\](https://github.com/OndrejSevcak/BlazorBlogStorage/blob/39662514a0982648296559bf57c342163a352b30/Posts/OAS/image.png)](https://raw.githubusercontent.com/OndrejSevcak/BlazorBlogStorage/39662514a0982648296559bf57c342163a352b30/Posts/OAS/image.png)

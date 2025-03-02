@@ -17,19 +17,7 @@ hashtags: "#CSharp #DotNet #AI #VSCode"
 
 ![VSCode](https://raw.githubusercontent.com/OndrejSevcak/BlazorBlogStorage/refs/heads/main/Posts/AICoding/GHCopilotEditsVSCode.png)
 
-### Co budeme programovat?
 
-Naším cílem bude vyvinout **high-performance processor objednávek**
-Tedy program, který bude zpracovávat velké množství objednávek v pořadí, v jakém přijdou.
-
-### 1. Vytvoření základních modelů
-
-- prvním krokem je vytvoření základních modelů, vytvoří si tedy složku Models, nový soubor Order.cs a napíšu komentář:
-    *//generate model class for Order*
-
-- stejným způsobem si vygeneruji modely pro třídy Product.cs, Customer.cs a OrderItem.cs
-
-- nyní napíšu prompt do chatu copilot agenta aby do třídy Order.cs přidal kolekci OrderItems
-
+- do pole *Edit files in your workspace* již můžete zadávat prompty na základě kterých bude Copilot sám navrhovat změny v jednotlivých souborech projektu
 
 
