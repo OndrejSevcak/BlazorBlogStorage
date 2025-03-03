@@ -7,15 +7,15 @@ category: "CSS"
 hashtags: "#CSS #FrontEnd #Basics"
 ---
 
+## Vlastnost Display v CSS
 
-## Display Property in CSS
+Vlastnost **display** určuje, jak jsou prvky zobrazeny v dokumentu<br>
+Nejpoužívanější hodnoty jsou:
 
-The `display` property controls how elements are displayed in the document flow. Below are the most commonly used values:
-
-### `block`
-- Takes the **full width** of its parent.
-- Starts on a **new line**.
-- Common for `<div>`, `<p>`, `<h1>`-`<h6>`, etc.
+### **block**
+- Zabírá **celou šířku** svého parent elementu.
+- Začíná na **novém řádku**.
+- Běžné pro `<div>`, `<p>`, `<h1>`-`<h6>`, atd.
 
 ```css
 .block-example {
@@ -25,11 +25,10 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
-### `inline`
-- Takes up **only as much width as necessary**.
-- Does **not** start on a new line.
-- Common for `<span>`, `<a>`, `<strong>`, etc.
-
+### **inline**
+- Zabírá **pouze tolik šířky, kolik je potřeba**.
+- **Nezačíná** na novém řádku.
+- Běžné pro `<span>`, `<a>`, `<strong>`, atd.
 
 ```css
 .inline-example {
@@ -38,8 +37,8 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
-### `inline-block`
-- Behaves like `inline`, but allows **setting width and height**.
+### **inline-block**
+- Chová se jako `inline`, ale umožňuje **nastavit šířku a výšku**.
 
 ```css
 .inline-block-example {
@@ -50,9 +49,9 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
-### `flex`
-- Turns an element into a **flex container**.
-- Makes its children follow **flexbox rules**.
+### **flex**
+- Přemění prvek na **flex container**.
+- Děti tohoto prvku se řídí **pravidly flexboxu**.
 
 ```css
 .flex-container {
@@ -62,9 +61,9 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
-###  `grid`
-- Turns an element into a **grid container**.
-- Uses **CSS Grid** for layout.
+### **grid**
+- Přemění prvek na **grid container**.
+- Používá **CSS Grid** pro rozvržení.
 
 ```css
 .grid-container {
@@ -73,8 +72,8 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
-### `none`
-- Hides the element completely (removes it from layout).
+### **none**
+- Úplně skryje prvek (odstraní ho z rozvržení).
 
 ```css
 .hidden {
@@ -82,7 +81,7 @@ The `display` property controls how elements are displayed in the document flow.
 }
 ```
 
-##  Summary
-- Use **`display`** for layout and structure.
-- Use **`position`** for precise element placement.
+## Shrnutí
+- Používejte **`display`** pro rozvržení a strukturu.
+- Používejte **`position`** pro přesné umístění prvků.
 

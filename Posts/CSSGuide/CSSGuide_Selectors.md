@@ -1,17 +1,16 @@
 ---
-title: "Most useful Selectors"
-description: "Most useful Selectors"
+title: "Základní CSS selektory"
+description: "Základní CSS selektory"
 author: "Ondrej Sevcak"
 date: "2024-02-02"
 category: "CSS"
 hashtags: "#CSS #FrontEnd #Basics"
 ---
 
+## Nejužitečnější CSS Selektory
 
-## Most Useful CSS Selectors
-
-###  Universal Selector (`*`)
-- Selects **all elements**.
+###  Univerzální selektor (**\***)
+- Vybere **všechny prvky**.
 
 ```css
 * {
@@ -20,8 +19,8 @@ hashtags: "#CSS #FrontEnd #Basics"
 }
 ```
 
-### Type Selector (`element`)
-- Selects **all instances** of a specific tag.
+### Typový selektor (**element**)
+- Vybere **všechny instance** konkrétního html tagu.
 
 ```css
 p {
@@ -29,8 +28,8 @@ p {
 }
 ```
 
-###  Class Selector (`.classname`)
-- Selects **all elements** with a given class.
+###  Třídový selektor (**.classname**)
+- Vybere **všechny prvky** s danou třídou.
 
 ```css
 .button {
@@ -38,8 +37,8 @@ p {
 }
 ```
 
-### ID Selector (`#idname`)
-- Selects a **single element** with a given ID.
+### ID selektor (**#idname**)
+- Vybere **jeden prvek** s daným ID.
 
 ```css
 #header {
@@ -47,8 +46,8 @@ p {
 }
 ```
 
-### Descendant Selector (`parent descendant`)
-- Selects **nested elements** inside another element.
+### Selektor potomků (**parent descendant**)
+- Vybere **vnořené prvky** uvnitř jiného prvku.
 
 ```css
 nav ul {
@@ -56,8 +55,8 @@ nav ul {
 }
 ```
 
-### Child Selector (`parent > child`)
-- Selects **only direct children**.
+### Selektor přímých potomků (**parent > child**)
+- Vybere **pouze přímé potomky**.
 
 ```css
 div > p {
@@ -65,8 +64,8 @@ div > p {
 }
 ```
 
-### Adjacent Sibling Selector (`element + sibling`)
-- Selects **the immediate next sibling**.
+### Selektor sousedních sourozenců (**element + sibling**)
+- Vybere **bezprostředně následujícího sourozence**.
 
 ```css
 h1 + p {
@@ -74,8 +73,8 @@ h1 + p {
 }
 ```
 
-###  General Sibling Selector (`element ~ sibling`)
-- Selects **all siblings after a given element**.
+###  Selektor obecných sourozenců (**element ~ sibling**)
+- Vybere **všechny sourozence po daném prvku**.
 
 ```css
 h1 ~ p {
@@ -83,9 +82,8 @@ h1 ~ p {
 }
 ```
 
-### Attribute Selector (`[attribute]`)
-- Selects elements with a specific attribute.
-
+### Selektor atributů (**[attribute]**)
+- Vybere prvky s konkrétním atributem.
 
 ```css
 input[type="text"] {
@@ -93,7 +91,7 @@ input[type="text"] {
 }
 ```
 
-### Pseudo-Classes (`:hover`, `:first-child`, `:nth-child(n)`, `:not()`, etc.)
+### Pseudo-třídy (**:hover**, **:first-child**, **:nth-child(n)**, **:not()**, atd.)
 
 ```css
 a:hover {
@@ -111,7 +109,7 @@ button:not(.disabled) {
 }
 ```
 
-###  Pseudo-Elements (`::before`, `::after`)
+###  Pseudo-prvky (**::before**, **::after**)
 
 ```css
 h1::before {

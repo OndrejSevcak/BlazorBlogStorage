@@ -7,13 +7,13 @@ category: "CSS"
 hashtags: "#CSS #FrontEnd #Basics"
 ---
 
-## Position Property in CSS
+## Vlastnost Position v CSS
 
-The `position` property controls how an element is placed relative to other elements or the viewport.
+Vlastnost **position** určuje, jak je prvek umístěn vzhledem k ostatním prvkům nebo viewportu.
 
-### `static` (Default)
-- **Normal document flow.**
-- `top`, `left`, `right`, `bottom` **do not work**.
+### **static** (Výchozí)
+- Normální tok dokumentu.
+- **top**, **left**, **right**, **bottom** nefungují.
 
 ```css
 .static-example {
@@ -21,8 +21,8 @@ The `position` property controls how an element is placed relative to other elem
 }
 ```
 
-###  `relative`
-- Positioned **relative to its normal position**.
+### **relative**
+- Umístěn **vzhledem ke své normální pozici**.
 
 ```css
 .relative-example {
@@ -32,9 +32,9 @@ The `position` property controls how an element is placed relative to other elem
 }
 ```
 
-###  `absolute`
-- Positioned **relative to the nearest positioned ancestor**.
-- If no ancestor is positioned, it is **relative to the `<body>`**.
+### **absolute**
+- Umístěn **vzhledem k nejbližšímu umístěnému parent elementu**.
+- Pokud žádný parent není , je umístěn **vzhledem k `<body>`**.
 
 ```css
 .absolute-example {
@@ -44,9 +44,9 @@ The `position` property controls how an element is placed relative to other elem
 }
 ```
 
-### `fixed`
-- Positioned **relative to the viewport**.
-- Does **not move** when scrolling.
+### **fixed**
+- Umístěn **vzhledem k viewportu**.
+- **Nepohybuje se** při rolování.
 
 ```css
 .fixed-example {
@@ -56,8 +56,8 @@ The `position` property controls how an element is placed relative to other elem
 }
 ```
 
-###  `sticky`
-- Acts like `relative`, but becomes `fixed` when scrolled to a set position.
+### **sticky**
+- Chová se jako **relative**, ale stává se **fixed**, když se posune na nastavenou pozici.
 
 ```css
 .sticky-example {
@@ -66,8 +66,8 @@ The `position` property controls how an element is placed relative to other elem
 }
 ```
 
-## Summary
-- Use **`display`** for layout and structure.
-- Use **`position`** for precise element placement.
+## Shrnutí
+- Používejte **display** pro rozvržení a strukturu.
+- Používejte **position** pro přesné umístění prvků.
 
 
