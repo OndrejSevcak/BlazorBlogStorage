@@ -1,22 +1,21 @@
 ---
-title: "Intro to Blazor"
-description: "Intro to Blazor, WebAssembly, SignalR and Hosting models for Blazor in .NET 8"
+title: "Úvod do Blazoru, WebAssembly, SignalR a hosting modelů"
+description: "Úvod do Blazoru, WebAssembly, SignalR a hosting modelů"
 author: "Ondrej Sevcak"
 date: "2024-12-30"
 category: "Blazor"
 hashtags: "#CSharp #DotNet #Blazor"
 ---
 
+## Co je Blazor
 
-## What is Blazor
+Blazor je open-source SPA (single-page-application) webový framework pro vytváření full-stack aplikací vytvořený a udržovaný společností Microsoft.
 
-Blazor is an open-source SPA(single-page-application) web framework for building full-stack applications created and maintained by Microsoft.
+Co je na Blazoru zajímavé, je to, že **můžete psát svůj klientský kód v C# a ten poběží v prohlížeči** (buď přímo v prohlížeči pomocí WebAssembly, nebo bude kód vykonáván na serveru a UI bude aktualizováno v reálném čase pomocí připojení SignalR).
 
-What is interesting about Blazor is that you **can write your client code in C# and it will run in the browser** (either directly in browser using WebAssembly or the code will be executed on the server and UI will be updated in real-time using SignalR connection).
+Takže nemusíte znát javascriptové frameworky jako React, Vue.js nebo Angular, abyste mohli vytvářet full-stack aplikace, a proto je Blazor skvělou volbou pro vývojáře C#, kteří chtějí vytvářet kompletní aplikace.
 
-So you do not have to know javascript frameworks like React, Vue.js or Angular to build full-stack applications and therefore Blazor is a great option for C# developers who want to build complete applications.
-
-There are a few different types of Blazor applications you can create:
+Existuje několik různých typů Blazor aplikací, které můžete vytvořit:
 
 - Blazor Server
 - Blazor WebAssembly
@@ -24,109 +23,108 @@ There are a few different types of Blazor applications you can create:
 
 ## Blazor Server
 
-Blazor Server uses SignalR to facilitate real-time communication between the client and server, allowing the execution of C# code on the server and updating the DOM on the client.
+Blazor Server používá SignalR k usnadnění komunikace v reálném čase mezi klientem a serverem, což umožňuje vykonávání C# kódu na serveru a aktualizaci DOM na klientovi.
 
-How Blazor Server works:
+Jak Blazor Server funguje:
 
+1. **Počáteční vykreslení stránky**
+    - Když uživatel přistoupí k aplikaci Blazor Server, server vykreslí počáteční HTML a pošle ho klientovi (prohlížeči).
+2. **Připojení SignalR**
+    - Jakmile je počáteční HTML načteno, Blazor naváže připojení SignalR mezi klientem a serverem.
+3. **Aktualizace komponent**
+    - Když na klientovi dojde k události (například kliknutí na tlačítko), událost je odeslána na server přes připojení SignalR.
+    - Server zpracuje událost, vykoná odpovídající C# kód a určí změny ve stavu komponenty.
+    - Server poté vygeneruje rozdíl (minimální sadu změn) k aktualizaci vykreslené komponenty.
+4. **Aktualizace DOM**
+    - Rozdíl je odeslán zpět klientovi přes připojení SignalR.
+    - Blazor JavaScript runtime na klientovi aplikuje tyto změny na DOM, aktualizuje uživatelské rozhraní bez úplného obnovení stránky.
 
-1. **Initial page render**
-    - When a user accesses a Blazor Server app, the server renders the initial HTML and sends it to the client (browser).
-2. **SignalR connection**
-    - Once the initial HTML is loaded, Blazor establishes a SignalR connection between the client and the server.
-3. **Component updates**
-    - When an event (such as a button click) occurs on the client, the event is sent to the server over the SignalR connection.
-    - The server handles the event, executes the corresponding C# code, and determines the changes to the component's state
-    - The server then generates a diff (a minimal set of changes) to update the rendered component.
-4. **DOM updates**
-    - The diff is sent back to the client over the SignalR connection.
-    - The Blazor JavaScript runtime on the client applies these changes to the DOM, updating the user interface without a full page reload.
+## Co je SignalR
 
-## What is SignalR
+..podle [Microsoft Learn](https://learn.microsoft.com/en-us/aspnet/core/signalr/introduction?view=aspnetcore-8.0)..
 
-..as per the [Microsoft Learn](https://learn.microsoft.com/en-us/aspnet/core/signalr/introduction?view=aspnetcore-8.0)..
+*"ASP.NET Core SignalR je open-source knihovna, která zjednodušuje přidávání funkcionality v reálném čase do aplikací. Funkcionalita v reálném čase umožňuje serverovému kódu okamžitě posílat obsah klientům. SignalR poskytuje API pro vytváření vzdálených procedurálních volání (RPC) ze serveru na klienty. RPC volání spouští funkce na klientech z serverového .NET Core kódu."*
 
-*"ASP.NET Core SignalR is an open-source library that simplifies adding real-time web functionality to apps. Real-time web functionality enables server-side code to push content to clients instantly. SignalR provides an API for creating server-to-client remote procedure calls (RPC). The RPCs invoke functions on clients from server-side .NET Core code"*
+SignalR nám umožňuje:
 
-So SingnalR enables us to:
+- posílat aktualizace s vysokou frekvencí ze serveru na klienta
+- posílat zprávy všem připojeným klientům současně
+- posílat zprávy konkrétním klientům nebo skupinám klientů
+- automaticky spravuje připojení
+- podporuje WebSockets, Server-Sent events, Long Polling
 
-- send high frequency updates from the server to the client
-- send messages to all connected clients simultaneously
-- send messages to specific clients or groups of clients
-- it handles connection management automatically
-- supports WebSockets, Server-Sent events, Long Polling
-
-**Blazor uses SignalR connection between server and client to execute C# on the server and send updates to the DOM on the client.**
+**Blazor používá připojení SignalR mezi serverem a klientem k vykonávání C# na serveru a odesílání aktualizací do DOM na klientovi.**
 
 ![Blazor Server](https://ondrejsevcak.github.io/img/blazor-server.png)
 
 ## Blazor WebAssembly (WASM)
 
-is a client-side hosting model of Blazor, which allows you to run C# code directly in the browser using WebAssembly.
+je klientský hostingový model Blazoru, který umožňuje spouštět C# kód přímo v prohlížeči pomocí WebAssembly.
 
-How Blazor WebAssembly works:
+Jak Blazor WebAssembly funguje:
 
-1. **Initial load**
-    - When a user accesses a Blazor WebAssembly application, the browser downloads a small bootstrapping HTML file, the Blazor WebAssembly runtime, the application DLLs, and the .NET runtime in WebAssembly format.
-    - The browser requests the initial HTML page.
-    - The HTML page includes a reference to the Blazor WebAssembly JavaScript file (blazor.webassembly.js).
-    - The blazor.webassembly.js script is executed, which loads the .NET runtime and application DLLs.
-2. **WebAssembly execution**
-    - The WebAssembly binary is executed by the browser’s JavaScript engine, which initializes the .NET runtime and loads the application assemblies.
-3. **Running C# code**
-    - The application’s C# code runs in the browser via the .NET runtime in WebAssembly.
-4. **Rendering Components**
-    - Blazor components are rendered using the WebAssembly runtime into the DOM.
-    - User interactions (such as clicks) trigger events that are handled by the Blazor WebAssembly runtime.
-5. **UI updates**
-    - When a component’s state changes, the Blazor runtime generates a diff and updates the DOM accordingly.
+1. **Počáteční načtení**
+    - Když uživatel přistoupí k aplikaci Blazor WebAssembly, prohlížeč stáhne malý bootstrapovací HTML soubor, Blazor WebAssembly runtime, aplikační DLL a .NET runtime ve formátu WebAssembly.
+    - Prohlížeč požádá o počáteční HTML stránku.
+    - HTML stránka obsahuje odkaz na Blazor WebAssembly JavaScript soubor (blazor.webassembly.js).
+    - Skript blazor.webassembly.js je vykonán, což načte .NET runtime a aplikační DLL.
+2. **Vykonávání WebAssembly**
+    - WebAssembly binární soubor je vykonán JavaScriptovým enginem prohlížeče, který inicializuje .NET runtime a načte aplikační sestavení.
+3. **Spouštění C# kódu**
+    - Aplikační C# kód běží v prohlížeči prostřednictvím .NET runtime ve WebAssembly.
+4. **Vykreslování komponent**
+    - Blazor komponenty jsou vykresleny pomocí WebAssembly runtime do DOM.
+    - Uživatelské interakce (například kliknutí) spouštějí události, které jsou zpracovány Blazor WebAssembly runtime.
+5. **Aktualizace UI**
+    - Když se změní stav komponenty, Blazor runtime vygeneruje rozdíl a aktualizuje DOM podle potřeby.
 
 ![Blazor WASM](https://ondrejsevcak.github.io/img/blazor-webassembly.png)
 
-## What is WebAssembly
+## Co je WebAssembly
 
-..as per the [MDN docs](https://developer.mozilla.org/en-US/docs/WebAssembly)..
+..podle [MDN docs](https://developer.mozilla.org/en-US/docs/WebAssembly)..
 
-*"WebAssembly is a type of code that can be run in modern web browsers — it is a low-level assembly-like language with a compact binary format that runs with near-native performance and provides languages such as C/C++, C# and Rust with a compilation target so that they can run on the web. It is also designed to run alongside JavaScript, allowing both to work together."*
+*"WebAssembly je typ kódu, který může být spuštěn v moderních webových prohlížečích — je to nízkoúrovňový jazyk podobný assembleru s kompaktním binárním formátem, který běží s téměř nativním výkonem a poskytuje jazykům jako C/C++, C# a Rust kompilaci cílového kódu, aby mohly běžet na webu. Je také navržen tak, aby běžel vedle JavaScriptu, což umožňuje oběma spolupracovat."*
 
-So WebAssembly enables us to:
+WebAssembly nám umožňuje:
 
-- run code of multiple languages in the browser (including C#)
-- has near-native execution speed (faster than javascript)
-- runs together with javascript (can be combined)
-- is secure in that - WebAssembly is specified to be run in a safe, sandboxed execution environment
-- is not secure in that - wasm code can be downloaded and decompiled, should not contain confidential information or code
+- spouštět kód v různých jazycích v prohlížeči (včetně C#)
+- má téměř nativní rychlost vykonávání (rychlejší než JavaScript)
+- běží spolu s JavaScriptem (může být kombinován)
+- je bezpečný v tom, že - WebAssembly je specifikován tak, aby běžel v bezpečném, sandboxovaném prostředí
+- není bezpečný v tom, že - wasm kód může být stažen a dekompilován, neměl by obsahovat důvěrné informace nebo kód
 
-**Blazor uses WebAssembly to run compiled C# code in the browser via .NET runtime, which is downloaded to the browser during initial page load.**
+**Blazor používá WebAssembly k spouštění kompilovaného C# kódu v prohlížeči prostřednictvím .NET runtime, který je stažen do prohlížeče během počátečního načtení stránky.**
 
-## What is a RenderTree
+## Co je RenderTree
 
-**Blazor uses an abstraction layer between the DOM and the application code, called a RenderTree. It is a lightweight copy of the DOM's state composed by standard C# classes.**
+**Blazor používá abstrakční vrstvu mezi DOM a aplikačním kódem, nazvanou RenderTree. Je to lehká kopie stavu DOM složená ze standardních C# tříd.**
 
-The RenderTree can be updated more efficiently than the DOM and reconciles multiple changes into a single DOM update. To maximize effectiveness the RenderTree uses a diffing algorithm to to ensure it only updates the necessary elements in the browser’s DOM.
+RenderTree může být aktualizován efektivněji než DOM a slučuje více změn do jedné aktualizace DOM. Aby byla maximalizována efektivita, RenderTree používá algoritmus pro porovnávání rozdílů, aby zajistil, že aktualizuje pouze nezbytné prvky v DOM prohlížeče.
 
-The process of mapping a DOM into a RenderTree can be controlled with the key directive. Controlling this process may be necessary in certain scenarios that require the context of different DOM elements to be maintained when a DOM is updated.
+Proces mapování DOM do RenderTree může být řízen pomocí direktivy key. Řízení tohoto procesu může být nezbytné v určitých scénářích, které vyžadují zachování kontextu různých prvků DOM při aktualizaci DOM.
 
-**..so we are already familiar with the different hosting models, prior .NET 8 we had to choose between WASM and Blazor Server when creating a new project.**
+**..takže jsme již obeznámeni s různými hostingovými modely, před .NET 8 jsme museli při vytváření nového projektu volit mezi WASM a Blazor Server.**
 
-## Render modes released in .NET 8
+## Renderovací režimy vydané v .NET 8
 
-Blazor in .NET 8 allows us to change the render mode for different components in the same application.
-Now we can set a rendermode to one of the following options:
+Blazor v .NET 8 nám umožňuje měnit renderovací režim pro různé komponenty ve stejné aplikaci.
+Nyní můžeme nastavit renderovací režim na jednu z následujících možností:
 
-- **None** - only static render files, no interactivity
-- **WebAssembly** - interactivity via code running in WebAssembly
-- **Server** - interactivity via SignalR connection between Client and Server
-- **Auto** - ability to set Server or WebAssembly or both per component in single application
+- **None** - pouze statické renderovací soubory, žádná interaktivita
+- **WebAssembly** - interaktivita prostřednictvím kódu běžícího ve WebAssembly
+- **Server** - interaktivita prostřednictvím připojení SignalR mezi klientem a serverem
+- **Auto** - možnost nastavit Server nebo WebAssembly nebo obojí pro komponenty v jedné aplikaci
 
-### Project templates and render modes in .NET 8
+### Šablony projektů a renderovací režimy v .NET 8
 
-In .NET 8, we can create only two Blazor project types with following render modes options:
+V .NET 8 můžeme vytvořit pouze dva typy Blazor projektů s následujícími možnostmi renderovacích režimů:
 
 <table style="border: 1px solid black;">
     <thead style="border: 1px solid black;">
         <tr style="border: 1px solid black;">
-            <th style="border: 1px solid black;">Template Name</th>
-            <th style="border: 1px solid black;">Interactivity</th>
+            <th style="border: 1px solid black;">Název šablony</th>
+            <th style="border: 1px solid black;">Interaktivita</th>
         </tr>
     </thead>
     <tbody style="border: 1px solid black;">
@@ -144,7 +142,7 @@ In .NET 8, we can create only two Blazor project types with following render mod
         </tr>
         <tr>
             <td>Blazor WebAssembly Standalone App</td>
-            <td>WebAssembly by default (no render mode)</td>
+            <td>WebAssembly ve výchozím nastavení (žádný renderovací režim)</td>
         </tr>
     </tbody>    
 </table>

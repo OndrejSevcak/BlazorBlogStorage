@@ -1,17 +1,15 @@
 ---
-title: "Components and their lifecycle"
-description: "Components and their lifecycle"
+title: "Úvod do komponent a jejich životního cyklu"
+description: "Úvod do komponent a jejich životního cyklu"
 author: "Ondrej Sevcak"
 date: "2025-01-22"
 category: "Blazor"
 hashtags: "#CSharp #DotNet #Blazor"
 ---
 
+### Co je Blazor Komponenta?
 
-
-### What is a Blazor Component?
-
-Blazor components are the building blocks of Blazor applications. They are reusable pieces of UI written in C#, HTML, and CSS. Each component resides in a `.razor` file and encapsulates its logic, rendering, and event handling. Example Blazor component:
+Blazor komponenty jsou stavebními bloky Blazor aplikací. Jsou to znovupoužitelné části UI napsané v C#, HTML a CSS. Každá komponenta se nachází v souboru `.razor` a zapouzdřuje svou logiku, vykreslování a zpracování událostí. Příklad Blazor komponenty:
 
 ```csharp
 <h3>Counter</h3>
@@ -28,65 +26,66 @@ Blazor components are the building blocks of Blazor applications. They are reusa
 }
 ```
 
-### Key Features of Blazor Components:
+### Klíčové vlastnosti Blazor komponent:
 
-- **Reusability:** Write once and use anywhere in your Blazor application.
-- **Encapsulation:** Keep the UI logic and styles self-contained.
-- **Interactivity:** Bind data and handle events seamlessly.
+- **Znovupoužitelnost:** Komponentu napíšete jednou a použijete kdekoliv ve své aplikaci
+- **Zapouzdření:** Udržujete logiku UI a styly samostaně.
+- **Interaktivita:** Propojujení UI, načítání dat a zprcování událostí.
 
+### Pochopení životního cyklu komponenty
 
-### Understanding the Component Lifecycle
+Životní cyklus komponenty v Blazoru je sekvence metod a událostí, které Blazor vyvolává při inicializaci, vykreslování a likvidaci komponenty. Pochopení těchto metod životního cyklu je základem pro úspěšné vyvíjení Blazor aplikací.
 
-The component lifecycle in Blazor is a sequence of methods and events that Blazor invokes as a component is initialized, rendered, and disposed of. Understanding these lifecycle methods can help you manage state, optimize performance, and debug effectively.
+### Přehled metod životního cyklu
 
-### Lifecycle Methods Overview
-
-1. **`OnInitialized` and `OnInitializedAsync`**
-   - Triggered when the component is initialized.
-   - Used to set up component state or initialize data from services.
+1. **`OnInitialized` a `OnInitializedAsync`**
+   - Spouští se při inicializaci komponenty.
+   - Používá se k nastavení stavu komponenty nebo inicializaci dat ze služeb - data loading nebo fetchování api
 
    ```csharp
    protected override void OnInitialized()
    {
        // Synchronous initialization logic
+       _data = _service.GetData();
        Console.WriteLine("Component initialized.");
    }
 
    protected override async Task OnInitializedAsync()
    {
        // Asynchronous initialization logic
-       await Task.Delay(1000);
+       _data = await _service.GetDataAsync();_
        Console.WriteLine("Component initialized asynchronously.");
    }
    ```
 
-2. **`OnParametersSet` and `OnParametersSetAsync`**
-   - Invoked when component parameters are set or updated.
-   - Useful for responding to changes in parent component data.
+2. **`OnParametersSet` a `OnParametersSetAsync`**
+   - Vyvolá se při nastavení nebo aktualizaci(změně hodnoty) parametrů komponenty (označené atributem [Parameter]).
+   - Užitečné pro reakci na změnu dat v nadřazené komponentě.
 
    ```csharp
    [Parameter] public string Title { get; set; }
 
    protected override void OnParametersSet()
    {
+       _specificData = _service.LoadSpecificData(MyParameter) 
        Console.WriteLine($"Title parameter set to: {Title}");
    }
    ```
 
 3. **`ShouldRender`**
-   - Determines whether the component should re-render.
-   - Override this method to optimize rendering performance.
+   - Určuje, zda by se komponenta měla znovu vykreslit.
+   - Tuto metodu můžete využít pro optimalizaci výkonu vykreslování.
 
    ```csharp
    protected override bool ShouldRender()
    {
-       return true; // Allow re-rendering
+       return _myData.Count != _service.Data.Count; // Allow re-rendering
    }
    ```
 
-4. **`OnAfterRender` and `OnAfterRenderAsync`**
-   - Invoked after the component has been rendered.
-   - Ideal for interacting with the DOM or initializing JavaScript libraries.
+4. **`OnAfterRender` a `OnAfterRenderAsync`**
+   - Vyvolá se po vykreslení komponenty.
+   - Ideální pro interakci s DOM nebo inicializaci JavaScriptových funkcí, protože stránka (DOM) je již plně vykreslena
 
    ```csharp
    protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -95,29 +94,32 @@ The component lifecycle in Blazor is a sequence of methods and events that Blazo
        {
            Console.WriteLine("First render completed.");
        }
+
+       jsModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", path);
+       await jsModule.InvokeVoidAsync("applyPostStyling");
    }
    ```
 
 5. **`Dispose`**
-   - Used to clean up resources when the component is removed from the UI.
+   - Používá se k uvolnění zdrojů, když je komponenta odstraněna z UI.
 
    ```csharp
    public void Dispose()
    {
+       _service.Dispose();
        Console.WriteLine("Component disposed.");
    }
    ```
 
+### Praktický příklad: Životní cyklus v akci
 
-### Practical Example: Lifecycle in Action
+Postavme jednoduchou Blazor komponentu, která demonstruje tyto metody životního cyklu. Komponenta bude:
 
-Let’s build a simple Blazor component to demonstrate these lifecycle methods. The component will:
+- Asynchronně načítat data při inicializaci.
+- Zaznamenávat aktualizace parametrů.
+- Optimalizovat logiku vykreslování.
 
-- Fetch data asynchronously on initialization.
-- Log parameter updates.
-- Optimize rendering logic.
-
-**Component Code:**
+**Kód komponenty:**
 
 ```csharp
 @page "/lifecycle-demo"
@@ -163,19 +165,13 @@ Let’s build a simple Blazor component to demonstrate these lifecycle methods. 
 }
 ```
 
-### Running the Demo
 
-- Set the `InputParameter` from the parent component or route.
-- Observe the console logs for lifecycle method execution.
-- Note how rendering is controlled using `ShouldRender`.
+### Doporučení
 
-
-### Best Practices for Using Lifecycle Methods
-
-1. **Minimize Work in Render Methods:** Avoid heavy computation in `ShouldRender` and `OnAfterRender`.
-2. **Async Initialization:** Use `OnInitializedAsync` for asynchronous tasks.
-3. **Dispose Resources:** Always implement `IDisposable` for components holding unmanaged resources.
-4. **Optimize Re-renders:** Leverage `ShouldRender` to prevent unnecessary updates.
+1. Vyhněte se těžkým výpočtům v `ShouldRender` a `OnAfterRender`.
+2. Používejte `OnInitializedAsync` pro asynchronní úkoly.
+3. Vždy implementujte `IDisposable` pro komponenty, které drží neřízené zdroje.
+4. Využívejte `ShouldRender` k prevenci zbytečných aktualizací.
 
 
 
