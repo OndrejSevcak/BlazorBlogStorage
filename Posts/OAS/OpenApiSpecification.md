@@ -1,6 +1,6 @@
 ---
-title: "Jak napsat svou první OAS"
-description: "Jak napsat svou první Open API Specification"
+title: "Jak napsat svou první OpenAPI Specifikaci"
+description: "Jak napsat svou první OpenAPI Specifikaci"
 author: "Ondrej Sevcak"
 date: "2025-02-23"
 category: "OAS"
@@ -14,12 +14,12 @@ hashtags: "#OAS #API #Backend"
 - Může být napsáno před zahájením vývoje - design first
 - Nebo generováno z kódu - code first
 
-### Jak napsat svou první OpenAPI Specifikaci
+#### Jak napsat svou první OpenAPI Specifikaci
 
 - OpenAPI specifikace jsou psány ve formátech JSON nebo YAML.
-- Syntaxe pro psaní specifikace se nazývá JSON Schema (Ano, JSON Schema můžete psát v YAML souboru)
+- Pro psaní specifikace se používá syntaxe [JSON Schema](https://json-schema.org/understanding-json-schema/basics) (Ano, JSON Schema můžete psát v YAML souboru)
 
-### JSON Schema
+#### JSON Schema
 
 JSON Schema je nástroj pro validaci, strukturování a dokumentaci JSON dat. Poskytuje standardní způsob definování očekávané struktury, datových typů a omezení pro JSON objekty.
 
@@ -55,29 +55,45 @@ JSON Schema je nástroj pro validaci, strukturování a dokumentaci JSON dat. Po
 }
 ```
 
-### Základy JSON Schema
+Tomuto JSON Schématu odpovídá následující objekt:
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "make": "Toyota",
+  "model": "Corolla",
+  "year": 2020,
+  "available": true
+}
+```
+
+#### Základy JSON Schema
 
 Základní struktura JSON Schema vypadá takto:
 
 ```yaml
 $schema: "https://json-schema.org/draft/2020-12/schema"
 
-title: "MenuItem"
-description: "Schéma reprezentující položku menu."
+title: "Car"
+description: "Schema representing a car object."
 
 type: "object"
 
 properties:
-  property1:
-    type: "string" #(string, number, boolean, object, array)
-    description: "Popis vlastnosti 1"
-    example: "Příklad hodnoty"
+  Make: # property name
+    type: "string" # allowed data types are: string, number, boolean, object, array
+    description: "Manufacturer of the car"
+    example: "Toyota"
+  Year:
+    type: int
+    description: "Year od assembly"
+    example: 2005
 required:
-  - property1
-  - property2
+  - Make
+  - Year
 ```
 
-**Jednoduché pole:**
+**JSON Schema - Jednoduché pole:**
 
 ```yaml
 type: "object"
@@ -87,10 +103,13 @@ properties:
     minItems: 0
     maxItems: 500
     items:
+      - one
+      - two
+      - three
       # definice položky v poli
 ```
 
-**Komplexní pole:**
+**JSON Schema - Komplexní pole:**
 
 ```yaml
 type: "object"
@@ -98,7 +117,7 @@ properties:
   arrayProperty:
     type: "array"
     items:
-      type: "object"
+      type: "object" # object in array
       properties:
         firstProperty:
           type: "string"
@@ -110,12 +129,11 @@ properties:
     uniqueItems: true
 ```
 
-**Enums:**
+**JSON Schema - Enums:**
 
 ```yaml
 type: "object"
 properties:
-  # Hodnoty výčtu
   enumProperty:
     type: "string"
     default: "value2"
@@ -127,7 +145,7 @@ properties:
 
 <br>
 
-### Jak je strukturován dokument OAS?
+#### Jak je strukturován OAS dokument?
 
 Dokument OpenAPI Specification obsahuje následující sekce:
 
@@ -139,19 +157,19 @@ Dokument OpenAPI Specification obsahuje následující sekce:
 6. **Security** - deklarace bezpečnostních mechanismů
 7. **Tags** - seznam tagů s dalšími metadata
 
-### Pojďme napsat naši první OpenAPI Specifikaci
+#### Pojďme napsat naši první OpenAPI Specifikaci
 
 - jaké nástroje potřebujeme? Začněme ve Visual Studio Code vytvořením .yaml souboru
-- jaké API budeme navrhovat? Byli jsme požádáni o návrh API vrstvy pro **CAR Rental - autopůjčovnu**
+- jaké API budeme navrhovat? Naším úkolem je návrh API vrstvy pro **CAR Rental - autopůjčovnu**
 - [OpenAPI Specification reference](https://swagger.io/specification/v3/)
 - [příklad OAS ve swagger editoru](https://editor.swagger.io/)
 
-### 1. Definování schémat v OAS
+#### 1. Definování schémat v OAS
 
 - začněme vytvořením schémat pro naše objekty
 - schémata patří do sekce nazvané *components*
 
-#### Schéma objektu auto - Car
+#### Schéma objektu Car - Auto
 
 ```yaml
 components:
@@ -178,7 +196,7 @@ components:
 
 - Dále vytvoříme definici schématu pro objekt reprezentující *Customer* objekt
 
-### Schéma Customer - zákazník
+#### Schéma Customer - zákazník
 
 ```yaml
 Customer:
@@ -193,7 +211,7 @@ Customer:
 ```
 A nakonec...
 
-#### Schéma Reservation - Reservace
+#### Schéma Reservation - Rezervace
 
 ```yaml
 Reservation:
@@ -213,7 +231,7 @@ Reservation:
         format: date
 ```
 
-#### Schéma pro chybovu hlášku - Error reponse
+#### Schéma Error reponse - chybová hláška
 
 ```yaml
     Error:
@@ -226,7 +244,7 @@ Reservation:
 ```
 <br>
 
-### 2. Definování API endpointů
+#### 2. Definování API endpointů
 
 - přidejme novou sekci do našeho .yaml souboru nazvanou **paths:**
 
@@ -375,7 +393,7 @@ paths:
                 $ref: '#/components/schemas/Error'
 ```
 
-## Celá specifikace:
+#### Celá specifikace:
 
 - [odkaz na soubor](https://raw.githubusercontent.com/OndrejSevcak/BlazorBlogStorage/39662514a0982648296559bf57c342163a352b30/Posts/OAS/car-rental-oas.yaml)
 
