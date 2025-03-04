@@ -1,6 +1,6 @@
 ---
 title: "Programujeme Order processor"
-description: "Programujeme Order processor""
+description: "Programujeme Order processor"
 author: "Ondrej Sevcak"
 date: "2025-03-04"
 category: "CSharp"
