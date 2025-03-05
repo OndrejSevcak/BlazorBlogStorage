@@ -5,6 +5,7 @@ author: "Ondrej Sevcak"
 date: "2025-02-23"
 category: "OAS"
 hashtags: "#OAS #API #Backend"
+publish: true
 ---
 
 ### Co je OpenAPI specifikace

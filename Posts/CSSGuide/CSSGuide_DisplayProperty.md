@@ -5,6 +5,7 @@ author: "Ondrej Sevcak"
 date: "2024-02-02"
 category: "CSS"
 hashtags: "#CSS #FrontEnd #Basics"
+publish: false
 ---
 
 ## Vlastnost Display v CSS

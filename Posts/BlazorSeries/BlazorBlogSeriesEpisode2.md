@@ -5,6 +5,7 @@ author: "Ondrej Sevcak"
 date: "2025-01-22"
 category: "Blazor"
 hashtags: "#CSharp #DotNet #Blazor"
+publish: true
 ---
 
 ### Co je Blazor Komponenta?

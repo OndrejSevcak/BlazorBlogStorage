@@ -5,6 +5,7 @@ author: "Ondrej Sevcak"
 date: "2025-03-05"
 category: "CSharp"
 hashtags: "#CSharp #DotNet #Basics"
+publish: true
 ---
 
 #### Jak vypadá a k čemu slouží *IEnumerable*?

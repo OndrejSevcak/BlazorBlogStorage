@@ -5,6 +5,7 @@ author: "Ondrej Sevcak"
 date: "2024-12-30"
 category: "Blazor"
 hashtags: "#CSharp #DotNet #Blazor"
+publish: true
 ---
 
 ## Co je Blazor

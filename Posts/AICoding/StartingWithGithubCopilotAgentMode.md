@@ -5,6 +5,7 @@ author: "Ondrej Sevcak"
 date: "2025-02-27"
 category: "AICoding"
 hashtags: "#CSharp #DotNet #AI #VSCode"
+publish: true
 ---
 
 ### Jak začít s GitHub Agent módem ve VS Code

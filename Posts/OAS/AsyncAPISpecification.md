@@ -5,9 +5,10 @@ author: "Ondrej Sevcak"
 date: "2025-02-23"
 category: "OAS"
 hashtags: "#AsyncAPI #OAS #Backend"
+publish: true
 ---
 
-## Co je AsyncAPI
+#### Co je AsyncAPI
 
 - otevřený standard pro definování a dokumentování asynchronních API
 - podobně jako OpenAPI definuje synchronní RESTful API
@@ -53,7 +54,7 @@ channels:
               format: date-time
 ```
 
-## Co je Kafka
+#### Co je Kafka
 
 - distribuovaná platforma pro event streaming používaná pro vysokou propustnost, odolnost proti chybám a streamování dat v reálném čase.
 - je široce používána pro architektury řízené událostmi, message brokering a analýzy v reálném čase.
@@ -84,7 +85,7 @@ Kafka funguje na modelu Pub/Sub (Publish-Subscribe), kde producenti posílají z
 
 - **Zookeeper** → Spravuje metadata a koordinaci brokerů (není potřeba v novějších verzích s KRaft mode).
 
-### Jak zprávy proudí v Kafka
+#### Jak zprávy proudí v Kafka
 1. Producent publikuje zprávy do Kafka topicu.
 2. Kafka ukládá zprávy do partition, což zajišťuje škálovatelnost a paralelismus.
 3. Konzumenti se přihlašují k topicům a čtou zprávy asynchronně.
@@ -93,9 +94,10 @@ Kafka funguje na modelu Pub/Sub (Publish-Subscribe), kde producenti posílají z
 <br>
 <br>
 
-## Jak používat Kafku v .NET webové aplikaci
+#### Jak používat Kafku v .NET webové aplikaci
 
-### Krok 1: Instalace potřebných balíčků
+- Krok 1: Instalace potřebných balíčků
+
 Použijte **Confluent.Kafka**, oficiální Kafka klient pro .NET.
 
 ```sh
@@ -104,7 +106,8 @@ dotnet add package Confluent.Kafka
 
 ---
 
-### Krok 2: Konfigurace Kafka producenta v .NET
+ - Krok 2: Konfigurace Kafka producenta v .NET
+
 Vytvořte **Kafka producenta** pro odesílání zpráv.
 
 ```csharp
@@ -137,7 +140,8 @@ class KafkaProducer
 
 ---
 
-### Krok 3: Konfigurace Kafka konzumenta v .NET
+ - Krok 3: Konfigurace Kafka konzumenta v .NET
+
 Vytvořte **Kafka konzumenta** pro čtení zpráv.
 
 ```csharp
@@ -182,7 +186,7 @@ class KafkaConsumer
 
 ---
 
-### Krok 4: Spuštění Kafka lokálně
+ - Krok 4: Spuštění Kafka lokálně
 Pro testování Kafka lokálně použijte **Docker**:
 
 ```sh

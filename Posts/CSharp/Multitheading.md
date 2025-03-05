@@ -5,6 +5,7 @@ author: "Ondrej Sevcak"
 date: "2025-03-01"
 category: "CSharp"
 hashtags: "#CSharp #DotNet #AI #VSCode"
+publish: false
 ---
 
 *Pozn: V tomto vlákně si budu psát své poznámky a postřehy k tématu multithreading programování v C#*
