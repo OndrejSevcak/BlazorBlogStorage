@@ -169,12 +169,21 @@ public class MyCustomEvenEnumerable : IEnumerable<int>
 ### Testování 
 
 ```csharp
+//vytvoření naší nové kolekce typu MyCustomEnumerable
 MyCustomEvenEnumerable customCollections = new MyCustomEvenEnumerable(new int[] { 1, 2, 3, 4, 5 });
+
+//iterace pomocí enumeratoru
 IEnumerator<int> customEnumerator = customCollections.GetEnumerator();
 while (customEnumerator.MoveNext())
 {
     Console.WriteLine(customEnumerator.Current);
 }
+//vrátí hodnoty: 2 4
 
+//iterace pomocí foreach
+foreach (int item in customCollection)
+{
+    Console.WriteLine(item);
+}
 //vrátí hodnoty: 2 4
 ```
