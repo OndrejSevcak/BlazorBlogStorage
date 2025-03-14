@@ -5,7 +5,7 @@ author: "Ondrej Sevcak"
 date: "2025-03-04"
 category: "CSharp"
 hashtags: "#CSharp #DotNet #Multithreading"
-publish: true
+publish: false
 ---
 
 #### Cíl
